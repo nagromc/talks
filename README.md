@@ -1,6 +1,8 @@
 # Talks
 
-Here are some of the talks I gave.
+Here are some of the talks I gave:
+
+- [2019-09-25 - Passwords](./2019-09-passwords/passwords.html)
 
 ## Install
 
