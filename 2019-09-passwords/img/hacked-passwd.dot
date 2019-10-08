@@ -1,0 +1,42 @@
+digraph g {
+  label="Fig. Piratage quand l'utilisateur a choisi le même\nmot de passe sur plusieurs sites"
+
+  {
+    node [image="actor.svg"; shape=plaintext; labelloc="b"];
+
+    user [label="Utilisateur"];
+    hacker [label="Hacker"];
+  }
+
+  {
+    node [shape=rectangle ; style=rounded];
+
+    website1 [label="Site web A"];
+    website2 [label="Site web B"];
+  }
+
+  {
+    node [shape=cylinder];
+
+    website1_db [label="Base de données\ncontenant des\nmots de passe\nnon chiffrés"];
+    website2_db [label="Base de données\ncontenant des\nmots de passe\n(chiffrés ou non)"];
+  }
+
+  {
+    rank=same;
+
+    website1;
+    website2;
+    website1_db;
+    website2_db;
+  }
+
+  user -> website1 [label="1. Valide son mot de passe\ndans le formulaire d'inscription"];
+  user -> website2 [label="1'. Valide son mot de passe\ndans le formulaire d'inscription"];
+  website1 -> website1_db [label="2. Enregistre\nle mot de passe\nen clair\ndans la base"];
+  website2 -> website2_db [label="2'. Enregistre\nle mot de passe\nen clair ou chiffré\ndans la base"];
+  website1_db -> hacker [style=dashed, label="3. Récupère la base\nsecrètement"]
+
+  website2 -> hacker [dir=back, label="4. S'authentifie\nà l'insu de\nl'Utilisateur"];
+  website2 -> hacker [label="5. Vole des données\nou fait des actions\nnon autoriséess"];
+}
